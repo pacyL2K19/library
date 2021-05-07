@@ -53,7 +53,9 @@ addBtn.addEventListener('click', function () {
   cardBody.appendChild(readBtn)
 
   mainDivCard.classList.add("card")
-  mainDivCard.classList.add("col-4")
+  mainDivCard.classList.add("col-3")
+  mainDivCard.classList.add("mx-3")
+  mainDivCard.classList.add("my-3")
 
   mainDivCard.appendChild(imageCard)
   mainDivCard.appendChild(cardBody)
