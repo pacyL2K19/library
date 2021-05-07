@@ -27,9 +27,16 @@ let addBtn = document.getElementById("add-book")
 
 addBtn.addEventListener('click', function () {
   let selector = document.getElementById("show");
-  const book1 = new Book('Star Wars', 'George Lucas', 1000, false)
-  addBookToLibrary(book1)
+  let title = document.getElementById("title").value
+  let author = document.getElementById("author").value
+  let pages = document.getElementById("pages").value
+  let readCheck = document.getElementById("read").value == "on" ? true : false
+
+  const book = new Book(title, author, pages, readCheck)
+
+  addBookToLibrary(book)
   console.log(myLibrary)
+
   let mainDivCard = document.createElement("div")
   let imageCard = document.createElement("img")
   let cardBody = document.createElement("div")
@@ -45,8 +52,8 @@ addBtn.addEventListener('click', function () {
   imageCard.classList.add("card-img-top")
   imageCard.src="https://miro.medium.com/max/820/1*1uTX2gdtlj9gsKxbiOc6LQ.jpeg"
   imageCard.alt = "Card image"
-  cardTile.innerHTML = book1.title
-  cardAuthor.innerHTML = book1.author
+  cardTile.innerHTML = book.title
+  cardAuthor.innerHTML = book.author
   cardBody.classList.add("card-body")
   cardBody.appendChild(cardTile)
   cardBody.appendChild(cardAuthor)
