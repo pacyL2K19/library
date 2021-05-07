@@ -30,10 +30,34 @@ addBtn.addEventListener('click', function () {
   const book1 = new Book('Star Wars', 'George Lucas', 1000, false)
   addBookToLibrary(book1)
   console.log(myLibrary)
-  displayBooks(myLibrary)
-  let paragraph = document.createElement("p")
-  paragraph.innerHTML = book1.info()
-  let newBook = document.createElement("div")
-  newBook.appendChild(paragraph)
-  selector.appendChild(newBook);
+  let mainDivCard = document.createElement("div")
+  let imageCard = document.createElement("img")
+  let cardBody = document.createElement("div")
+  let cardTile = document.createElement("h5")
+  let cardAuthor = document.createElement("p")
+  let readBtn = document.createElement("button")
+  readBtn.classList.add("btn")
+  readBtn.classList.add("btn-primary")
+  readBtn.innerHTML = "Readed"
+
+  cardTile.classList.add("card-title")
+  cardAuthor.classList.add("card-text")
+  imageCard.classList.add("card-img-top")
+  imageCard.src="https://miro.medium.com/max/820/1*1uTX2gdtlj9gsKxbiOc6LQ.jpeg"
+  imageCard.alt = "Card image"
+  cardTile.innerHTML = book1.title
+  cardAuthor.innerHTML = book1.author
+  cardBody.classList.add("card-body")
+  cardBody.appendChild(cardTile)
+  cardBody.appendChild(cardAuthor)
+  cardBody.appendChild(readBtn)
+
+  mainDivCard.classList.add("card")
+  mainDivCard.classList.add("col-4")
+
+  mainDivCard.appendChild(imageCard)
+  mainDivCard.appendChild(cardBody)
+
+  selector.appendChild(mainDivCard);
+
 })
