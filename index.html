@@ -13,9 +13,9 @@
 
 <body>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
-    </button>
+    </button> -->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -39,15 +39,17 @@
                             <label for="pages" class="form-label">Pages</label>
                             <input type="number" id="pages" class="form-control" placeholder="1000">
                         </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="read">
-                            <label for="read" class="form-label">Did you read it?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="yes" id="read">
+                            <label class="form-check-label" for="read">
+                                I have read it
+                            </label>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button id="add-book" type="button" class="btn btn-primary" >Create Book</button>
+                    <button id="add-book" type="button" class="btn btn-primary">Create Book</button>
                 </div>
             </div>
         </div>
@@ -55,7 +57,8 @@
     <div class="container">
         <div id="show" class="row py-5 justify-content-center"></div>
         <div class="btn-box">
-            <button id="add-book2" class="btn btn-success">Add a book</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="add-book"
+                class="btn btn-success">Add a book</button>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

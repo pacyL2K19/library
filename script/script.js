@@ -26,11 +26,12 @@ const displayBooks = (library) => {
 let addBtn = document.getElementById("add-book")
 
 addBtn.addEventListener('click', function () {
+  console.log(document.getElementById("read").value);
   let selector = document.getElementById("show");
   let title = document.getElementById("title").value
   let author = document.getElementById("author").value
   let pages = document.getElementById("pages").value
-  let readCheck = document.getElementById("read").value == "on" ? true : false
+  let readCheck = document.getElementById("read").value == "yes" ? true : false
 
   const book = new Book(title, author, pages, readCheck)
 
@@ -52,7 +53,7 @@ addBtn.addEventListener('click', function () {
   imageCard.classList.add("card-img-top")
   imageCard.src="https://miro.medium.com/max/820/1*1uTX2gdtlj9gsKxbiOc6LQ.jpeg"
   imageCard.alt = "Card image"
-  cardTile.innerHTML = book.title
+  cardTile.innerHTML = book.title + " - " + book.pages + " Pages"
   cardAuthor.innerHTML = book.author
   cardBody.classList.add("card-body")
   cardBody.appendChild(cardTile)
