@@ -38,6 +38,9 @@ addBtn.addEventListener('click', function () {
   addBookToLibrary(book)
   console.log(myLibrary)
 
+  let icon = document.createElement("i")
+  icon.classList.add("far")
+  icon.classList.add("fa-trash")
   let mainDivCard = document.createElement("div")
   let imageCard = document.createElement("img")
   let cardBody = document.createElement("div")
@@ -67,6 +70,7 @@ addBtn.addEventListener('click', function () {
 
   mainDivCard.appendChild(imageCard)
   mainDivCard.appendChild(cardBody)
+  mainDivCard.appendChild(icon)
 
   selector.appendChild(mainDivCard);
 
