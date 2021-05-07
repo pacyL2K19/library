@@ -40,7 +40,8 @@ addBtn.addEventListener('click', function () {
 
   let icon = document.createElement("i")
   icon.classList.add("far")
-  icon.classList.add("fa-trash")
+  icon.classList.add("fa-trash-alt")
+  icon.classList.add("text-light")
   let mainDivCard = document.createElement("div")
   let imageCard = document.createElement("img")
   let cardBody = document.createElement("div")
@@ -50,6 +51,12 @@ addBtn.addEventListener('click', function () {
   readBtn.classList.add("btn")
   readBtn.classList.add("btn-primary")
   readBtn.innerHTML = "Readed"
+
+  let readBtn2 = document.createElement("button")
+  readBtn2.classList.add("btn")
+  readBtn2.classList.add("btn-primary")
+  readBtn2.classList.add("mx-5")
+  readBtn2.appendChild(icon)
 
   cardTile.classList.add("card-title")
   cardAuthor.classList.add("card-text")
@@ -62,6 +69,7 @@ addBtn.addEventListener('click', function () {
   cardBody.appendChild(cardTile)
   cardBody.appendChild(cardAuthor)
   cardBody.appendChild(readBtn)
+  cardBody.appendChild(readBtn2)
 
   mainDivCard.classList.add("card")
   mainDivCard.classList.add("col-3")
@@ -70,7 +78,6 @@ addBtn.addEventListener('click', function () {
 
   mainDivCard.appendChild(imageCard)
   mainDivCard.appendChild(cardBody)
-  mainDivCard.appendChild(icon)
 
   selector.appendChild(mainDivCard);
 
