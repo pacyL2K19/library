@@ -22,4 +22,17 @@ addBtn.addEventListener('click', function () {
   const book1 = new Book('Star Wars', 'George Lucas', 1000, false)
   addBookToLibrary(book1)
   console.log(myLibrary)
+
+  let selector = document.getElementById("show");
+  for (let i=0; i<myLibrary.length; i++) {
+  let paragraph = document.createElement("p")
+  paragraph.innerHTML = myLibrary[i].info()
+  
+  let newBook = document.createElement("div")
+  newBook.appendChild(paragraph)
+  selector.appendChild(newBook);
+}
+
 })
+
+
