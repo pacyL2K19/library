@@ -26,7 +26,6 @@ const displayBooks = (library) => {
 let addBtn = document.getElementById("add-book")
 
 addBtn.addEventListener('click', function () {
-  console.log(document.getElementById("read").value);
   let selector = document.getElementById("show");
   let title = document.getElementById("title").value
   let author = document.getElementById("author").value
