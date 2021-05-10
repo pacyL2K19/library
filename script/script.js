@@ -65,7 +65,7 @@ addBtn.addEventListener('click', function () {
   imageCard.src="https://miro.medium.com/max/820/1*1uTX2gdtlj9gsKxbiOc6LQ.jpeg"
   imageCard.alt = "Card image"
   cardTile.innerHTML = book.title
-  cardDescription.innerHTML = `Status: ${book.pages} ${readCheck ? `Readed` : `Unreaded`}`
+  cardDescription.innerHTML = `Status: ${book.pages} pages ${readCheck ? `Readed` : `Unreaded`}`
   cardAuthor.innerHTML = book.author
   cardBody.classList.add("card-body")
   cardBody.appendChild(cardTile)
