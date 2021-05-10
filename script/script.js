@@ -1,20 +1,68 @@
 let myLibrary = [];
 let selector = document.getElementById("show");
-let mainDivCard = document.createElement("div")
-let imageCard = document.createElement("img")
-let cardBody = document.createElement("div")
-let cardTile = document.createElement("h5")
-let cardAuthor = document.createElement("p")
-let cardDescription = document.createElement("em")
-let readBtn = document.createElement("button")
-let icon = document.createElement("i")
+
+const populateList = () => {
+  for (let book of myLibrary) {
+    let removeButton = document.createElement("button")
+    let icon = document.createElement("i")
+    icon.classList.add("far")
+    icon.classList.add("fa-trash-alt")
+    icon.classList.add("text-light")
+    let mainDivCard = document.createElement("div")
+    let imageCard = document.createElement("img")
+    let cardBody = document.createElement("div")
+    let cardTile = document.createElement("h5")
+    let cardAuthor = document.createElement("p")
+    let cardDescription = document.createElement("em")
+    let readBtn = document.createElement("button")
+    readBtn.classList.add("btn")
+    readBtn.classList.add("btn-primary")
+    readBtn.innerHTML = book.read
+    removeButton.classList.add("btn")
+    removeButton.classList.add("btn-primary")
+    removeButton.classList.add("mx-1")
+    removeButton.appendChild(icon)
+    removeButton.id = myLibrary.length - 1
+
+    removeButton.addEventListener("click", function (event) {
+      handleRemove(removeButton.id)
+    })
+
+    cardTile.classList.add("card-title")
+    cardAuthor.classList.add("card-text")
+    imageCard.classList.add("card-img-top")
+    imageCard.src = "https://miro.medium.com/max/820/1*1uTX2gdtlj9gsKxbiOc6LQ.jpeg"
+    imageCard.alt = "Card image"
+    cardTile.innerHTML = book.title
+    cardDescription.innerHTML = `Status: ${book.pages} pages ${book.read === 'Mark as unreaded' ? `Readed` : `Unreaded`}`
+    cardAuthor.innerHTML = book.author
+    cardBody.classList.add("card-body")
+    cardBody.appendChild(cardTile)
+    cardBody.appendChild(cardAuthor)
+    cardBody.appendChild(cardDescription)
+    cardBody.appendChild(readBtn)
+    cardBody.appendChild(removeButton)
+
+    mainDivCard.classList.add("card")
+    mainDivCard.classList.add("col-3")
+    mainDivCard.classList.add("mx-3")
+    mainDivCard.classList.add("my-3")
+
+    mainDivCard.appendChild(imageCard)
+    mainDivCard.appendChild(cardBody)
+
+    selector.appendChild(mainDivCard);
+    console.log("Appended");
+  }
+
+}
 
 const handleRemove = (index) => {
   myLibrary.splice(index, 1)
   while (selector.firstChild) {
     selector.removeChild(selector.firstChild);
   }
-
+  populateList()
   console.log(myLibrary)
 }
 
@@ -48,70 +96,17 @@ const displayBooks = () => {
     selector.removeChild(selector.firstChild);
   }
   // selector has zero children
-  for (let book in myLibrary) {
-    // let icon = document.createElement("i")
-    icon.classList.add("far")
-    icon.classList.add("fa-trash-alt")
-    icon.classList.add("text-light")
-    // let mainDivCard = document.createElement("div")
-    // let imageCard = document.createElement("img")
-    // let cardBody = document.createElement("div")
-    // let cardTile = document.createElement("h5")
-    // let cardAuthor = document.createElement("p")
-    // let cardDescription = document.createElement("em")
-    // let readBtn = document.createElement("button")
-    readBtn.classList.add("btn")
-    readBtn.classList.add("btn-primary")
-    readBtn.innerHTML = readCheck
-
-    let removeButton = document.createElement("button")
-    removeButton.classList.add("btn")
-    removeButton.classList.add("btn-primary")
-    removeButton.classList.add("mx-1")
-    removeButton.appendChild(icon)
-    removeButton.id = myLibrary.length - 1
-
-    removeButton.addEventListener("click", function (event) {
-      handleRemove(removeButton.id)
-    })
-
-    cardTile.classList.add("card-title")
-    cardAuthor.classList.add("card-text")
-    imageCard.classList.add("card-img-top")
-    imageCard.src = "https://miro.medium.com/max/820/1*1uTX2gdtlj9gsKxbiOc6LQ.jpeg"
-    imageCard.alt = "Card image"
-    cardTile.innerHTML = book.title
-    cardDescription.innerHTML = `Status: ${book.pages} pages ${readCheck ? `Readed` : `Unreaded`}`
-    cardAuthor.innerHTML = book.author
-    cardBody.classList.add("card-body")
-    cardBody.appendChild(cardTile)
-    cardBody.appendChild(cardAuthor)
-    cardBody.appendChild(cardDescription)
-    cardBody.appendChild(readBtn)
-    cardBody.appendChild(removeButton)
-
-    mainDivCard.classList.add("card")
-    mainDivCard.classList.add("col-3")
-    mainDivCard.classList.add("mx-3")
-    mainDivCard.classList.add("my-3")
-
-    mainDivCard.appendChild(imageCard)
-    mainDivCard.appendChild(cardBody)
-
-    selector.appendChild(mainDivCard);
-    document.getElementById("title").value = ""
-    document.getElementById("author").value = ""
-    document.getElementById("pages").value = ""
-    document.getElementById("read").checked = false
-  }
-
+  populateList()
 }
 
 let addBtn = document.getElementById("add-book")
 
 addBtn.addEventListener('click', function () {
-  // console.log(myLibrary)
   displayBooks(myLibrary)
   alert("Books added to the library successfully");
+  document.getElementById("title").value = ""
+  document.getElementById("author").value = ""
+  document.getElementById("pages").value = ""
+  document.getElementById("read").checked = false
 
 })
