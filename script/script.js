@@ -1,4 +1,5 @@
 let myLibrary = [];
+let selector = document.getElementById("show");
 
 function Book(title, author, pages, read) {
   this.title = title
@@ -26,11 +27,11 @@ const displayBooks = (library) => {
 let addBtn = document.getElementById("add-book")
 
 addBtn.addEventListener('click', function () {
-  let selector = document.getElementById("show");
+  console.log(document.getElementById("read").checked);
   let title = document.getElementById("title").value
   let author = document.getElementById("author").value
   let pages = document.getElementById("pages").value
-  let readCheck = document.getElementById("read").value == "yes" ? true : false
+  let readCheck = document.getElementById("read").checked == true ? "Mark as unreaded" : "Mark as readed"
 
   const book = new Book(title, author, pages, readCheck)
 
@@ -46,15 +47,16 @@ addBtn.addEventListener('click', function () {
   let cardBody = document.createElement("div")
   let cardTile = document.createElement("h5")
   let cardAuthor = document.createElement("p")
+  let cardDescription = document.createElement("em")
   let readBtn = document.createElement("button")
   readBtn.classList.add("btn")
   readBtn.classList.add("btn-primary")
-  readBtn.innerHTML = "Readed"
+  readBtn.innerHTML = readCheck
 
   let readBtn2 = document.createElement("button")
   readBtn2.classList.add("btn")
   readBtn2.classList.add("btn-primary")
-  readBtn2.classList.add("mx-5")
+  readBtn2.classList.add("mx-1")
   readBtn2.appendChild(icon)
 
   cardTile.classList.add("card-title")
@@ -62,11 +64,13 @@ addBtn.addEventListener('click', function () {
   imageCard.classList.add("card-img-top")
   imageCard.src="https://miro.medium.com/max/820/1*1uTX2gdtlj9gsKxbiOc6LQ.jpeg"
   imageCard.alt = "Card image"
-  cardTile.innerHTML = book.title + " - " + book.pages + " Pages"
+  cardTile.innerHTML = book.title
+  cardDescription.innerHTML = `Status: ${book.pages} ${readCheck ? `Readed` : `Unreaded`}`
   cardAuthor.innerHTML = book.author
   cardBody.classList.add("card-body")
   cardBody.appendChild(cardTile)
   cardBody.appendChild(cardAuthor)
+  cardBody.appendChild(cardDescription)
   cardBody.appendChild(readBtn)
   cardBody.appendChild(readBtn2)
 
@@ -79,5 +83,10 @@ addBtn.addEventListener('click', function () {
   mainDivCard.appendChild(cardBody)
 
   selector.appendChild(mainDivCard);
+  document.getElementById("title").value = ""
+  document.getElementById("author").value = ""
+  document.getElementById("pages").value = ""
+  document.getElementById("read").checked = false
+  alert("Books added to the library successfully");
 
 })
