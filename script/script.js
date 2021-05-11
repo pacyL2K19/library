@@ -74,7 +74,6 @@ function printCard(library) {
   const toggleBtns = document.querySelectorAll('.toggle');
   deleteBtns.forEach((btn) => btn.addEventListener('click', deleteOneCard));
   toggleBtns.forEach((btn) => btn.addEventListener('click', toggleBookStatus));
-  alert('Book created successfully');
 }
 
 function notifyUser() {
