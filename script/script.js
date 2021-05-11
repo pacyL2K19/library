@@ -84,7 +84,6 @@ addBook.addEventListener('click', () => {
   addBookToLibrary();
   printCard(myLibrary);
   cleanForm();
-  // toggleNewBook();
 });
 
 function deleteOneCard(event) {
