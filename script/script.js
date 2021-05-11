@@ -11,10 +11,10 @@ function Book(title, author, pages, readStatus) {
 }
 
 function getUserInput() {
-  const title = document.getElementById("title").value;
-  const author = document.getElementById("author").value;
-  const pages = document.getElementById("pages").value;
-  const readStatus = document.getElementById("read").checked;
+  const title = document.getElementById('title').value;
+  const author = document.getElementById('author').value;
+  const pages = document.getElementById('pages').value;
+  const readStatus = document.getElementById('read').checked;
 
   return {
     title,
@@ -34,14 +34,14 @@ function validateForm(obj) {
 }
 
 function notifyUser() {
-  alert("The form is not valid");
+  alert('The form is not valid');
 }
 
 function cleanForm() {
-  document.getElementById("title").value = "";
-  document.getElementById("author").value = "";
-  document.getElementById("pages").value = "";
-  document.getElementById("read").checked = false;
+  document.getElementById('title').value = '';
+  document.getElementById('author').value = '';
+  document.getElementById('pages').value = '';
+  document.getElementById('read').checked = false;
 }
 
 function addCard(library, book) {
@@ -54,31 +54,33 @@ function addCard(library, book) {
         <a href='#' class="btn ${book.readStatus ? 'btn-success' : 'btn-primary'} toggle" data-index-number="${library.indexOf(book)}">${book.readStatus ? 'Read' : 'Not read'}</a>
         <a href='#' class='btn btn-danger removeBtn' data-index-number="${library.indexOf(book)}">Delete</a>
     </div>
-  </div>`
+  </div>`;
 
   return card;
 }
 
 function printCard(library) {
-  const markup = library.map(elt => addCard(library, elt)).join('');
-  const booksList = document.getElementById("show");
+  const markup = library.map((elt) => addCard(library, elt)).join('');
+  const booksList = document.getElementById('show');
   booksList.innerHTML = markup;
-  const deleteBtns = document.querySelectorAll(".removeBtn");
+  const deleteBtns = document.querySelectorAll('.removeBtn');
   const toggleBtns = document.querySelectorAll('.toggle');
-  deleteBtns.forEach(btn => btn.addEventListener('click', deleteOneCard));
-  toggleBtns.forEach(btn => btn.addEventListener('click', toggleBookStatus));
+  deleteBtns.forEach((btn) => btn.addEventListener('click', deleteOneCard));
+  toggleBtns.forEach((btn) => btn.addEventListener('click', toggleBookStatus));
 }
 
 function addBookToLibrary() {
   const formIsValid = validateForm(getUserInput());
   if (!formIsValid) return notifyUser();
 
-  const { title, author, pages, readStatus } = getUserInput();
+  const {
+    title, author, pages, readStatus,
+  } = getUserInput();
   const newBook = new Book(title, author, pages, readStatus);
   myLibrary.push(newBook);
 }
 
-const addBook = document.getElementById("add-book");
+const addBook = document.getElementById('add-book');
 
 addBook.addEventListener('click', () => {
   addBookToLibrary();
