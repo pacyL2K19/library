@@ -1,3 +1,7 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable consistent-return */
+/* eslint-disable no-alert */
+/* eslint-disable func-names */
 const myLibrary = [];
 
 function Book(title, author, pages, readStatus) {
@@ -33,17 +37,6 @@ function validateForm(obj) {
   return true;
 }
 
-function notifyUser() {
-  alert('The form is not valid');
-}
-
-function cleanForm() {
-  document.getElementById('title').value = '';
-  document.getElementById('author').value = '';
-  document.getElementById('pages').value = '';
-  document.getElementById('read').checked = false;
-}
-
 function addCard(library, book) {
   const card = `<div class="card col-4" style="width: 18rem;">
     <img class="card-img-top" src="https://miro.medium.com/max/820/1*1uTX2gdtlj9gsKxbiOc6LQ.jpeg" alt="Card image cap">
@@ -59,6 +52,20 @@ function addCard(library, book) {
   return card;
 }
 
+function deleteOneCard(event) {
+  const clickedButton = event.currentTarget;
+  const correspondingBookIndex = clickedButton.dataset.indexNumber;
+  myLibrary.splice(correspondingBookIndex, 1);
+  printCard(myLibrary);
+}
+
+function toggleBookStatus(event) {
+  const bookIndex = event.currentTarget.dataset.indexNumber;
+  const book = myLibrary[bookIndex];
+  book.updateReadStatus();
+  printCard(myLibrary);
+}
+
 function printCard(library) {
   const markup = library.map((elt) => addCard(library, elt)).join('');
   const booksList = document.getElementById('show');
@@ -67,6 +74,17 @@ function printCard(library) {
   const toggleBtns = document.querySelectorAll('.toggle');
   deleteBtns.forEach((btn) => btn.addEventListener('click', deleteOneCard));
   toggleBtns.forEach((btn) => btn.addEventListener('click', toggleBookStatus));
+}
+
+function notifyUser() {
+  alert('The form is not valid');
+}
+
+function cleanForm() {
+  document.getElementById('title').value = '';
+  document.getElementById('author').value = '';
+  document.getElementById('pages').value = '';
+  document.getElementById('read').checked = false;
 }
 
 function addBookToLibrary() {
@@ -87,17 +105,3 @@ addBook.addEventListener('click', () => {
   printCard(myLibrary);
   cleanForm();
 });
-
-function deleteOneCard(event) {
-  const clickedButton = event.currentTarget;
-  const correspondingBookIndex = clickedButton.dataset.indexNumber;
-  myLibrary.splice(correspondingBookIndex, 1);
-  printCard(myLibrary);
-}
-
-function toggleBookStatus(event) {
-  const bookIndex = event.currentTarget.dataset.indexNumber;
-  const book = myLibrary[bookIndex];
-  book.updateReadStatus();
-  printCard(myLibrary);
-}

@@ -1,22 +1,14 @@
 {
     "env": {
-      "browser": true,
-      "es6": true,
-      "jest": true
+        "browser": true,
+        "es2021": true
     },
-    "parser": "babel-eslint",
+    "extends": [
+        "airbnb-base"
+    ],
     "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module"
+        "ecmaVersion": 12
     },
-    "extends": ["airbnb-base"],
     "rules": {
-      "no-shadow": "off",
-      "no-param-reassign": "off",
-      "eol-last": "off"
-    },
-    "ignorePatterns": [
-      "dist/",
-      "build/"
-    ]
+    }
 }
