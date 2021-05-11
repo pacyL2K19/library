@@ -1,10 +1,11 @@
 # Library - Javascript
 
-Library in JavaScript is a practice project, which includes the user input functionality and managing the dynamically DOM manipulation. We used Javascript, HTML5, CSS3, Bootstrap to implement it.
+> Library in JavaScript is a practice project, which includes the user input functionality and managing the dynamically DOM manipulation. We used Javascript, HTML5, CSS3, Bootstrap to implement it.
 
 ## Live Link Demo
 
 [Live Link Demo]()
+![screenshot](./assets/sdkcap.png)
 
 ## Built With
 
@@ -20,14 +21,14 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 - Text Editor (VSCode is suggested.)
+- Git installed 
 
 ### Setup
 
-- Install [git](https://git-scm.com/downloads)
 - Open Terminal
-- Change directory to folder to download repository
-- Use `cd <file-path>`
-- Run `git clone https://github.com/marcelomaidden/javascript-library`
+- In your prefered folder, run `git clone https://github.com/pacyL2K19/library`
+- Open the `index.html` in the folder to run the project
+
 
 To make any change,
 
@@ -35,11 +36,12 @@ To make any change,
 
 ## Authors
 
-👤 **Pacifique Llinjanja**
 
-- Github: [@pacyL2K19]()
-- Twitter: [@]()
-- Linkedin: []()
+👤 **Pacifique Linjanja**
+
+- Github: [@pacyL2K19](https://github.com/pacyL2K19)
+- Twitter: [@PacifiqueLinja1](https://twitter.com/PacifiqueLinja1)
+- Linkedin: [Pacifique Linjanja](https://www.linkedin.com/in/pacifique-linjanja/)
 
 👤  **Carlos Ospina**
 
