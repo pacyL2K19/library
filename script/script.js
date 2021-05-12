@@ -10,15 +10,56 @@ import {
 
 const myLibrary = [];
 
-function Book(title, author, pages, readStatus) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readStatus = readStatus;
-  this.updateReadStatus = () => {
-    this.readStatus = !this.readStatus;
-  };
+class Book {
+  constructor(title, author, pages, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
+  }
+
+  get title() {
+    return this.title;
+  }
+
+  set title(title) {
+    this.title = title;
+  }
+
+  get author() {
+    return this.author;
+  }
+
+  set author(author) {
+    this.author = author;
+  }
+
+  get pages() {
+    return this.pages;
+  }
+
+  set pages(pages) {
+    this.pages = pages;
+  }
+
+  get readStatus() {
+    return this.readStatus;
+  }
+
+  set readStatus(readStatus) {
+    this.readStatus = readStatus;
+  }
 }
+
+// function Book(title, author, pages, readStatus) {
+//   this.title = title;
+//   this.author = author;
+//   this.pages = pages;
+//   this.readStatus = readStatus;
+//   this.updateReadStatus = () => {
+//     this.readStatus = !this.readStatus;
+//   };
+// }
 
 const getUserInput = () => {
   const title = getDomElement('#title').value;
