@@ -2,6 +2,15 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-alert */
 /* eslint-disable func-names */
+import {
+  getDomElement,
+  setInnerHTML,
+  setValue,
+  setCheckedValue,
+  getAllElementsOfType,
+  handleEvent,
+} from './dom';
+
 const myLibrary = [];
 
 function Book(title, author, pages, readStatus) {
@@ -15,10 +24,10 @@ function Book(title, author, pages, readStatus) {
 }
 
 const getUserInput = () => {
-  const title = document.getElementById('title').value;
-  const author = document.getElementById('author').value;
-  const pages = document.getElementById('pages').value;
-  const readStatus = document.getElementById('read').checked;
+  const title = getDomElement('#title').value;
+  const author = getDomElement('#author').value;
+  const pages = getDomElement('#pages').value;
+  const readStatus = getDomElement('#checkbox').checked;
 
   return {
     title,
@@ -68,37 +77,48 @@ const toggleBookStatus = (event) => {
 
 const printCard = (library) => {
   const markup = library.map((elt) => addCard(library, elt)).join('');
-  const booksList = document.getElementById('show');
+  const booksList = getDomElement('#show');
   booksList.innerHTML = markup;
-  const deleteBtns = document.querySelectorAll('.removeBtn');
+  const deleteBtns = getAllElementsOfType('.removeBtn');
   const toggleBtns = document.querySelectorAll('.toggle');
-  deleteBtns.forEach((btn) => btn.addEventListener('click', deleteOneCard));
-  toggleBtns.forEach((btn) => btn.addEventListener('click', toggleBookStatus));
+  handleEvent(deleteBtns, 'click', deleteOneCard);
+  handleEvent(toggleBtns, 'click', toggleBookStatus);
 };
 
-const notifyUser = () => {
-  alert('The form is not valid');
+const notifyUserWarning = () => {
+  const warningALert = getDomElement('#warning-alert');
+  const successWarning = getDomElement('#success-alert');
+  successWarning.classList.add('d-none');
+  warningALert.classList.remove('d-none');
+};
+
+const notifyUserSuccess = () => {
+  const warningALert = getDomElement('#warning-alert');
+  const successWarning = getDomElement('#success-alert');
+  successWarning.classList.remove('d-none');
+  warningALert.classList.add('d-none');
 };
 
 const cleanForm = () => {
-  document.getElementById('title').value = '';
-  document.getElementById('author').value = '';
-  document.getElementById('pages').value = '';
-  document.getElementById('read').checked = false;
+  getDomElement('#title').value = '';
+  getDomElement('#author').value = '';
+  getDomElement('#pages').value = '';
+  getDomElement('#read').checked = false;
 };
 
 const addBookToLibrary = () => {
   const formIsValid = validateForm(getUserInput());
-  if (!formIsValid) return notifyUser();
+  if (!formIsValid) return notifyUserWarning();
 
   const {
     title, author, pages, readStatus,
   } = getUserInput();
   const newBook = new Book(title, author, pages, readStatus);
   myLibrary.push(newBook);
+  notifyUserSuccess();
 };
 
-const addBook = document.getElementById('add-book');
+const addBook = getDomElement('#add-book');
 
 addBook.addEventListener('click', () => {
   addBookToLibrary();
