@@ -1,8 +1,5 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-use-before-define */
-/* eslint-disable consistent-return */
-/* eslint-disable no-alert */
-/* eslint-disable func-names */
 import {
   getDomElement,
   setInnerHTML,
@@ -18,7 +15,7 @@ function Book(title, author, pages, readStatus) {
   this.author = author;
   this.pages = pages;
   this.readStatus = readStatus;
-  this.updateReadStatus = function () {
+  this.updateReadStatus = () => {
     this.readStatus = !this.readStatus;
   };
 }
@@ -132,7 +129,7 @@ const addBookToLibrary = () => {
   } = getUserInput();
   const newBook = new Book(title, author, pages, readStatus);
   myLibrary.push(newBook);
-  notifyUserSuccess();
+  return notifyUserSuccess();
 };
 
 const addBook = getDomElement('#add-book');
