@@ -49,6 +49,10 @@ class Book {
   set readStatus(readStatus) {
     this.readStatus = readStatus;
   }
+
+  updateReadStatus() {
+    this.readStatus(!this.readStatus);
+  }
 }
 
 // function Book(title, author, pages, readStatus) {
@@ -56,9 +60,9 @@ class Book {
 //   this.author = author;
 //   this.pages = pages;
 //   this.readStatus = readStatus;
-//   this.updateReadStatus = () => {
-//     this.readStatus = !this.readStatus;
-//   };
+// this.updateReadStatus = () => {
+//   this.readStatus = !this.readStatus;
+// };
 // }
 
 const getUserInput = () => {
