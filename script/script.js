@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
 /* eslint-disable no-use-before-define */
 import {
@@ -10,14 +11,49 @@ import {
 
 const myLibrary = [];
 
-function Book(title, author, pages, readStatus) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readStatus = readStatus;
-  this.updateReadStatus = () => {
-    this.readStatus = !this.readStatus;
-  };
+class Book {
+  constructor(title, author, pages, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
+  }
+
+  get title() {
+    return this._title;
+  }
+
+  set title(title) {
+    this._title = title;
+  }
+
+  get author() {
+    return this._author;
+  }
+
+  set author(author) {
+    this._author = author;
+  }
+
+  get pages() {
+    return this._pages;
+  }
+
+  set pages(pages) {
+    this._pages = pages;
+  }
+
+  get readStatus() {
+    return this._readStatus;
+  }
+
+  set readStatus(readStatus) {
+    this._readStatus = readStatus;
+  }
+
+  updateReadStatus() {
+    this.readStatus(!this._readStatus);
+  }
 }
 
 const getUserInput = () => {
