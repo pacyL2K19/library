@@ -14,7 +14,7 @@ function Book(title, author, pages, readStatus) {
   };
 }
 
-function getUserInput() {
+const getUserInput = () => {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
   const pages = document.getElementById('pages').value;
@@ -26,18 +26,18 @@ function getUserInput() {
     pages,
     readStatus,
   };
-}
+};
 
-function validateForm(obj) {
-  const formValues = Object.values(obj);
+const validateForm = (form) => {
+  const formValues = Object.values(form);
   for (let i = 0; i < formValues.length; i += 1) {
     if (formValues[i].length === 0) return false;
   }
 
   return true;
-}
+};
 
-function addCard(library, book) {
+const addCard = (library, book) => {
   const card = `<div class="card col-4" style="width: 18rem;">
     <img class="card-img-top" src="https://miro.medium.com/max/820/1*1uTX2gdtlj9gsKxbiOc6LQ.jpeg" alt="Card image cap">
     <div class="card-body">
@@ -50,23 +50,23 @@ function addCard(library, book) {
   </div>`;
 
   return card;
-}
+};
 
-function deleteOneCard(event) {
+const deleteOneCard = (event) => {
   const clickedButton = event.currentTarget;
   const correspondingBookIndex = clickedButton.dataset.indexNumber;
   myLibrary.splice(correspondingBookIndex, 1);
   printCard(myLibrary);
-}
+};
 
-function toggleBookStatus(event) {
+const toggleBookStatus = (event) => {
   const bookIndex = event.currentTarget.dataset.indexNumber;
   const book = myLibrary[bookIndex];
   book.updateReadStatus();
   printCard(myLibrary);
-}
+};
 
-function printCard(library) {
+const printCard = (library) => {
   const markup = library.map((elt) => addCard(library, elt)).join('');
   const booksList = document.getElementById('show');
   booksList.innerHTML = markup;
@@ -74,20 +74,20 @@ function printCard(library) {
   const toggleBtns = document.querySelectorAll('.toggle');
   deleteBtns.forEach((btn) => btn.addEventListener('click', deleteOneCard));
   toggleBtns.forEach((btn) => btn.addEventListener('click', toggleBookStatus));
-}
+};
 
-function notifyUser() {
+const notifyUser = () => {
   alert('The form is not valid');
-}
+};
 
-function cleanForm() {
+const cleanForm = () => {
   document.getElementById('title').value = '';
   document.getElementById('author').value = '';
   document.getElementById('pages').value = '';
   document.getElementById('read').checked = false;
-}
+};
 
-function addBookToLibrary() {
+const addBookToLibrary = () => {
   const formIsValid = validateForm(getUserInput());
   if (!formIsValid) return notifyUser();
 
@@ -96,7 +96,7 @@ function addBookToLibrary() {
   } = getUserInput();
   const newBook = new Book(title, author, pages, readStatus);
   myLibrary.push(newBook);
-}
+};
 
 const addBook = document.getElementById('add-book');
 
