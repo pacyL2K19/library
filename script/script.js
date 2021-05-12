@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-use-before-define */
 /* eslint-disable consistent-return */
 /* eslint-disable no-alert */
@@ -5,11 +6,10 @@
 import {
   getDomElement,
   setInnerHTML,
-  setValue,
-  setCheckedValue,
+  resetValue,
   getAllElementsOfType,
   handleEvent,
-} from './dom';
+} from './dom.js';
 
 const myLibrary = [];
 
@@ -27,7 +27,7 @@ const getUserInput = () => {
   const title = getDomElement('#title').value;
   const author = getDomElement('#author').value;
   const pages = getDomElement('#pages').value;
-  const readStatus = getDomElement('#checkbox').checked;
+  const readStatus = getDomElement('#read').checked;
 
   return {
     title,
@@ -53,8 +53,14 @@ const addCard = (library, book) => {
         <h5 class="card-title">${book.title}</h5>
         <p class="card-text">${book.author}</p>
         <p class="card-text"><em>${book.pages} Pages</em></p>
-        <a href='#' class="btn ${book.readStatus ? 'btn-success' : 'btn-primary'} toggle" data-index-number="${library.indexOf(book)}">${book.readStatus ? 'Read' : 'Not read'}</a>
-        <a href='#' class='btn btn-danger removeBtn' data-index-number="${library.indexOf(book)}">Delete</a>
+        <a href='#' class="btn ${book.readStatus
+    ? 'btn-success'
+    : 'btn-primary'} toggle" data-index-number="${library.indexOf(
+  book,
+)}">${book.readStatus ? 'Read' : 'Not read'}</a>
+        <a href='#' class='btn btn-danger removeBtn' data-index-number="${library.indexOf(
+    book,
+  )}">Delete</a>
     </div>
   </div>`;
 
@@ -78,11 +84,20 @@ const toggleBookStatus = (event) => {
 const printCard = (library) => {
   const markup = library.map((elt) => addCard(library, elt)).join('');
   const booksList = getDomElement('#show');
-  booksList.innerHTML = markup;
+  setInnerHTML(booksList, markup);
   const deleteBtns = getAllElementsOfType('.removeBtn');
-  const toggleBtns = document.querySelectorAll('.toggle');
+  const toggleBtns = getAllElementsOfType('.toggle');
   handleEvent(deleteBtns, 'click', deleteOneCard);
   handleEvent(toggleBtns, 'click', toggleBookStatus);
+};
+
+const clearAlerts = () => {
+  const warningALert = getDomElement('#warning-alert');
+  const successWarning = getDomElement('#success-alert');
+  setTimeout(() => {
+    if (!successWarning.classList.contains('d-none')) successWarning.classList.add('d-none');
+    if (!warningALert.classList.contains('d-none')) warningALert.classList.add('d-none');
+  }, 1000);
 };
 
 const notifyUserWarning = () => {
@@ -90,6 +105,7 @@ const notifyUserWarning = () => {
   const successWarning = getDomElement('#success-alert');
   successWarning.classList.add('d-none');
   warningALert.classList.remove('d-none');
+  clearAlerts();
 };
 
 const notifyUserSuccess = () => {
@@ -97,13 +113,14 @@ const notifyUserSuccess = () => {
   const successWarning = getDomElement('#success-alert');
   successWarning.classList.remove('d-none');
   warningALert.classList.add('d-none');
+  clearAlerts();
 };
 
 const cleanForm = () => {
-  getDomElement('#title').value = '';
-  getDomElement('#author').value = '';
-  getDomElement('#pages').value = '';
-  getDomElement('#read').checked = false;
+  resetValue(getDomElement('#title'), '');
+  resetValue(getDomElement('#author'), '');
+  resetValue(getDomElement('#pages'), '');
+  resetValue(getDomElement('#read'), false);
 };
 
 const addBookToLibrary = () => {
