@@ -56,16 +56,6 @@ class Book {
   }
 }
 
-// function Book(title, author, pages, readStatus) {
-//   this.title = title;
-//   this.author = author;
-//   this.pages = pages;
-//   this.readStatus = readStatus;
-// this.updateReadStatus = () => {
-//   this.readStatus = !this.readStatus;
-// };
-// }
-
 const getUserInput = () => {
   const title = getDomElement('#title').value;
   const author = getDomElement('#author').value;
