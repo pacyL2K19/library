@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
 /* eslint-disable no-use-before-define */
 import {
@@ -19,39 +20,39 @@ class Book {
   }
 
   get title() {
-    return this.title;
+    return this._title;
   }
 
   set title(title) {
-    this.title = title;
+    this._title = title;
   }
 
   get author() {
-    return this.author;
+    return this._author;
   }
 
   set author(author) {
-    this.author = author;
+    this._author = author;
   }
 
   get pages() {
-    return this.pages;
+    return this._pages;
   }
 
   set pages(pages) {
-    this.pages = pages;
+    this._pages = pages;
   }
 
   get readStatus() {
-    return this.readStatus;
+    return this._readStatus;
   }
 
   set readStatus(readStatus) {
-    this.readStatus = readStatus;
+    this._readStatus = readStatus;
   }
 
   updateReadStatus() {
-    this.readStatus(!this.readStatus);
+    this.readStatus(!this._readStatus);
   }
 }
 
